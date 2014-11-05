@@ -1,0 +1,51 @@
+---
+title: "GoogleVis"
+author: "Will"
+date: "Tuesday, November 04, 2014"
+output: html_document
+---
+
+
+```{r setOptions, message=FALSE,echo=FALSE}
+library(googleVis)
+
+```
+
+## Welcome to this two page
+
+## Histogram
+
+```{r results='asis'}
+set.seed(123)
+datHist=data.frame(A=rpois(100, 20),
+                   B=rpois(100, 5),
+                   C=rpois(100, 50))
+
+Hist <- gvisHistogram(datHist, options=list(
+  legend="{ position: 'top', maxLines: 2 }",
+  colors="['#5C3292', '#1A8763', '#871B47']",
+  width=750, height=360))
+
+
+print(Hist,file="hist.html")
+```
+
+<iframe src="hist.html" width="1200" height="800"></iframe>
+
+
+## Line Chart
+
+```{r results='asis'}
+df=data.frame(country=c("US", "GB", "BR"), 
+              val1=c(10,13,14), 
+              val2=c(23,12,32))
+Line <- gvisLineChart(df,options=list(width=750, height=500))
+
+print(Line,file="line.html")
+```
+
+
+<iframe src="line.html" width="1200" height="800"></iframe>
+
+
+
